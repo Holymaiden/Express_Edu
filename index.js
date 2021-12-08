@@ -2,12 +2,28 @@ const express = require("express");
 const app = express();
 const port = 8080;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+const {
+  usersAll,
+  usersById,
+  usersCreate,
+  usersUpdate,
+  usersDelete,
+} = require("./src/controllers/users.controller");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.get("/", function (req, res) {
+  res.send("Hello World");
 });
 
+app.get("/user", usersAll);
+app.get("/user/:id", usersById);
+app.post("/user", usersCreate);
+app.put("/user/:id", usersUpdate);
+app.delete("/user/:id", usersDelete);
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Masuk ke halaman ini http://localhost:${port}`);
 });
 
 module.exports = app;
