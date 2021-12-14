@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   development: {
     client: "mysql2",
@@ -7,5 +9,8 @@ module.exports = {
       password: "",
       database: "express_edu",
     },
+  },
+  migrations: {
+    directory: path.join(__dirname, "database/migration"),
   },
 };
