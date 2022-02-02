@@ -4,11 +4,12 @@ async function getAllUsers() {
   return connection.select("id", "username", "password").from("users");
 }
 
-async function getUsersById(id) {
+async function getUsersById(username) {
   return connection
     .select("id", "username", "password")
     .from("users")
-    .where("id", id);
+    .where("username", username)
+    .first();
 }
 
 async function createUsers(data) {
